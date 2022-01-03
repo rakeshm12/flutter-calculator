@@ -18,41 +18,55 @@ class MyHomePage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: 200,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        context.watch<ButtonController>().userInput,
-                        style: const TextStyle(color: Colors.white, fontSize: 25),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              context.watch<ButtonController>().userInput,
+                              textAlign: TextAlign.end,
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 25),
+                            ),
+                          ],
+                        ),
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        context.watch<ButtonController>().answer,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 40,
-                            fontStyle: FontStyle.italic,
-                            fontWeight: FontWeight.bold),
+                      const SizedBox(height: 10,),
+                      SizedBox(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              context.watch<ButtonController>().answer,
+                              textAlign: TextAlign.end,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 40,
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
             ),
+            const SizedBox(height: 65),
             const Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.symmetric(horizontal: 10),
               child: Divider(
                 color: Colors.grey,
               ),
             ),
             Expanded(
-              flex: 3,
+              flex: 2,
               child: SizedBox(
+                height: MediaQuery.of(context).size.height,
                 child: GridView.builder(
                     itemCount: ButtonModel().buttons.length,
                     gridDelegate:
@@ -94,7 +108,8 @@ class MyHomePage extends StatelessWidget {
                               ? Colors.deepOrange
                               : Colors.white10,
                           textColor: Colors.white,
-                          onTap: () => context.read<ButtonController>().isZero(index),
+                          onTap: () =>
+                              context.read<ButtonController>().isZero(index),
                         );
                       }
 
